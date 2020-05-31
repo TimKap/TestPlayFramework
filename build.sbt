@@ -16,3 +16,15 @@ PlayKeys.devSettings := Seq("play.server.http.port" -> "8080")
 
 // Adds additional packages into conf/routes
 // play.sbt.routes.RoutesKeys.routesImport += "ru.tkapkaev.binders._"
+scalacOptions ++= Seq(  "-deprecation",
+  "-encoding",
+  "UTF-8",
+  "-feature",
+  "-language:postfixOps",
+  "-language:higherKinds",
+  "-language:implicitConversions",
+  "-unchecked",
+  "-Xlint",
+  "-Xfatal-warnings",
+  "-Ywarn-dead-code",
+  "-Ywarn-numeric-widen")
