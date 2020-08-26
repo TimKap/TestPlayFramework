@@ -1,0 +1,2 @@
+FROM amazonlinux:latest
+RUN amazon-linux-extras install java-openjdk11 && yum install htop -y

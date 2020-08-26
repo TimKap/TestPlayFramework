@@ -1,7 +1,11 @@
 package controllers
 
+import buffer.{Buf, Dummy}
 import javax.inject._
+import org.slf4j.LoggerFactory
 import play.api.mvc._
+
+
 
 /**
  * This controller creates an `Action` to handle HTTP requests to the
@@ -9,6 +13,10 @@ import play.api.mvc._
  */
 @Singleton
 class HomeController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
+
+  private val log = LoggerFactory.getLogger(getClass)
+
+
 
   /**
    * Create an Action to render an HTML page.
@@ -18,6 +26,18 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
    * a path of `/`.
    */
   def index() = Action { _ =>
-    Ok("lkl;")
+
+    log.debug("Increment memory")
+
+    for (i <- 1 to 2000000) {
+       Buf.col.append(Dummy(1, "dad"))
+    }
+    Ok("Added;")
+  }
+
+  def clean() = Action { _ =>
+    Buf.col.clear()
+
+    Ok("Cleaned")
   }
 }
